@@ -1,0 +1,1 @@
+delete from public.waitlist where email = 'check.connect@example.com';
