@@ -8,6 +8,7 @@ test("applies SWAY display typography with precise tracking", () => {
 
   const styles = getComputedStyle(heading);
 
-  expect(styles.letterSpacing).toBe("-0.05em");
+  // -0.05em resolves to px in the computed style; both express the same tracking.
+  expect(["-0.05em", "-1.6px"]).toContain(styles.letterSpacing);
   expect(styles.fontWeight).toBe("400");
 });
