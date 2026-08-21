@@ -1,144 +1,691 @@
 @import "tailwindcss" source(none);
 @source "../src";
-@import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
-
-/*
- * Design system definition.
- *
- * The @theme inline block maps CSS custom properties to Tailwind utility
- * classes (e.g. --color-primary -> bg-primary, text-primary).
- *
- * The :root and .dark blocks define the actual color values using oklch.
- * All colors MUST use oklch format.
- *
- * To add a new semantic color:
- * 1. Add the variable to :root (light value) and .dark (dark value)
- * 2. Register it in @theme inline as --color-<name>: var(--<name>)
- */
-
-@theme inline {
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --radius-2xl: calc(var(--radius) + 8px);
-  --radius-3xl: calc(var(--radius) + 12px);
-  --radius-4xl: calc(var(--radius) + 16px);
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --color-ring-offset-background: var(--background);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
-}
+/* ================================================================
+   SWAY MEDIA — Design Token System
+   ================================================================ */
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.984 0.003 247.858);
-  --sidebar-foreground: oklch(0.129 0.042 264.695);
-  --sidebar-primary: oklch(0.208 0.042 265.755);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.968 0.007 247.896);
-  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
-  --sidebar-border: oklch(0.929 0.013 255.508);
-  --sidebar-ring: oklch(0.704 0.04 256.788);
+  --sway-black: #000000;
+  --sway-black-soft: #050505;
+  --sway-carbon: #0a0a0a;
+  --sway-graphite: #141414;
+  --sway-smoke: #242424;
+  --sway-muted: #666666;
+  --sway-silver: #a6a6a6;
+  --sway-off-white: #f5f5f5;
+  --sway-white: #ffffff;
+  --sway-border: rgba(255, 255, 255, 0.12);
+  --sway-border-subtle: rgba(255, 255, 255, 0.06);
+  --sway-atmosphere: rgba(255, 255, 255, 0.03);
+  --sway-grid: rgba(255, 255, 255, 0.025);
+  --sway-glow-normal: 0 0 8px rgba(255, 255, 255, 0.1);
+  --sway-glow-hover: 0 0 20px rgba(255, 255, 255, 0.18);
+  --sway-glow-hero: 0 0 40px rgba(255, 255, 255, 0.12);
+  --sway-radius-small: 6px;
+  --sway-radius-medium: 10px;
+  --sway-radius-large: 16px;
+  --sway-radius-pill: 999px;
+  --sway-space-1: 4px;
+  --sway-space-2: 8px;
+  --sway-space-3: 12px;
+  --sway-space-4: 16px;
+  --sway-space-6: 24px;
+  --sway-space-8: 32px;
+  --sway-space-12: 48px;
+  --sway-space-16: 64px;
+  --sway-space-20: 80px;
+  --sway-space-24: 96px;
+  --sway-space-32: 128px;
+  --sway-space-40: 160px;
+  --sway-space-48: 192px;
+  --sway-space-64: 256px;
+  color-scheme: dark;
+  background: var(--sway-black);
 }
 
-.dark {
-  --background: oklch(0.129 0.042 264.695);
-  --foreground: oklch(0.984 0.003 247.858);
-  --card: oklch(0.208 0.042 265.755);
-  --card-foreground: oklch(0.984 0.003 247.858);
-  --popover: oklch(0.208 0.042 265.755);
-  --popover-foreground: oklch(0.984 0.003 247.858);
-  --primary: oklch(0.929 0.013 255.508);
-  --primary-foreground: oklch(0.208 0.042 265.755);
-  --secondary: oklch(0.279 0.041 260.031);
-  --secondary-foreground: oklch(0.984 0.003 247.858);
-  --muted: oklch(0.279 0.041 260.031);
-  --muted-foreground: oklch(0.704 0.04 256.788);
-  --accent: oklch(0.279 0.041 260.031);
-  --accent-foreground: oklch(0.984 0.003 247.858);
-  --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.551 0.027 264.364);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.208 0.042 265.755);
-  --sidebar-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.279 0.041 260.031);
-  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.551 0.027 264.364);
+/* ================================================================
+   Base Reset
+   ================================================================ */
+
+* {
+  box-sizing: border-box;
 }
 
-@layer base {
-  * {
-    border-color: var(--color-border);
+html,
+body {
+  min-height: 100%;
+  margin: 0;
+}
+
+/* ================================================================
+   Opening Intro — isolated fullscreen brand ident
+   ================================================================ */
+
+.sway-opening-intro {
+  align-items: center;
+  background: #000;
+  display: flex;
+  height: 100dvh;
+  inset: 0;
+  justify-content: center;
+  overflow: hidden;
+  pointer-events: all;
+  position: fixed;
+  width: 100vw;
+  z-index: 2147483647;
+}
+
+.sway-opening-intro__video {
+  display: block;
+  height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sway-opening-intro {
+    display: none;
+  }
+}
+
+body {
+  background: var(--sway-black);
+  color: var(--sway-off-white);
+  font-family: var(--font-sway-body), Arial, sans-serif;
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ================================================================
+   Typography System
+   ================================================================ */
+
+.sway-display {
+  font-family: var(--font-sway-display), Arial, sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.05em;
+}
+
+.sway-heading {
+  font-family: var(--font-sway-display), Arial, sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+}
+
+.sway-label {
+  font-family: var(--font-sway-body), Arial, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.sway-tagline {
+  font-family: var(--font-sway-body), Arial, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+}
+
+/* Screen-reader only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ================================================================
+   Brand — Logo Lockup
+   ================================================================ */
+
+.sway-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  filter: none;
+  transition: filter 240ms ease;
+}
+
+.sway-logo:hover {
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.08));
+}
+
+.sway-logo__img {
+  height: auto;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.sway-logo--nav {
+  max-width: 140px;
+}
+
+.sway-logo--nav .sway-logo__img {
+  max-height: 36px;
+  width: auto;
+}
+
+.sway-logo--hero {
+  max-width: clamp(280px, 50vw, 560px);
+}
+
+.sway-logo--hero .sway-logo__img {
+  max-height: clamp(80px, 15vw, 180px);
+  width: auto;
+}
+
+/* ================================================================
+   Brand — Wordmark
+   ================================================================ */
+
+.sway-wordmark {
+  font-family: var(--font-sway-display), Arial, sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.075em;
+  line-height: 0.8;
+  color: var(--sway-off-white);
+  display: block;
+  user-select: none;
+}
+
+/* Hero-sized wordmark — dramatically large on desktop */
+.sway-wordmark--hero {
+  font-size: clamp(3rem, 10vw, 8.5rem);
+  text-shadow: 0 0 60px rgba(255, 255, 255, 0.06);
+}
+
+/* ================================================================
+   Distortion Effect — subtle editorial motion
+   ================================================================ */
+
+.sway-distortion {
+  animation: sway-distort 12s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes sway-distort {
+  0%,
+  100% {
+    transform: scaleX(1) skewX(0deg);
+  }
+  25% {
+    transform: scaleX(1.012) skewX(-0.4deg);
+  }
+  50% {
+    transform: scaleX(0.992) skewX(0.3deg);
+  }
+  75% {
+    transform: scaleX(1.008) skewX(-0.2deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sway-distortion {
+    animation: none;
+  }
+}
+
+/* ================================================================
+   Background Video — Atmospheric Layer
+   ================================================================ */
+
+.sway-background-video {
+  inset: 0;
+  height: 100%;
+  mix-blend-mode: screen;
+  object-fit: cover;
+  opacity: 0.06;
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sway-background-video {
+    display: none;
+  }
+}
+
+/* ================================================================
+   Effects — Grain & Orbital
+   ================================================================ */
+
+.sway-grain {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
+  inset: 0;
+  opacity: 0.025;
+  pointer-events: none;
+  position: absolute;
+  z-index: 1;
+}
+
+.sway-orbit {
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  height: min(86vw, 75rem);
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(86vw, 75rem);
+}
+
+/* ================================================================
+   Hero Section
+   ================================================================ */
+
+.sway-hero {
+  isolation: isolate;
+  min-height: 100svh;
+  overflow: hidden;
+  position: relative;
+  background: var(--sway-black);
+  padding: 1.75rem clamp(1.25rem, 7vw, 9rem);
+}
+
+.sway-hero__content {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: calc(100svh - 3.5rem);
+  position: relative;
+  text-align: center;
+  z-index: 1;
+  gap: var(--sway-space-6);
+}
+
+/* Wordmark wrapper */
+.sway-hero__wordmark-wrap {
+  margin-bottom: var(--sway-space-4);
+}
+
+/* Headline */
+.sway-hero__headline {
+  font-size: clamp(1.8rem, 4vw, 3.5rem);
+  font-weight: 400;
+  max-width: 18ch;
+  margin: 0;
+  color: var(--sway-off-white);
+}
+
+/* Supporting copy */
+.sway-hero__subtext {
+  font-family: var(--font-sway-body), Arial, sans-serif;
+  font-size: clamp(0.85rem, 1.4vw, 1.05rem);
+  font-weight: 400;
+  color: var(--sway-silver);
+  max-width: 42ch;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Sparkle dot — subtle geometric detail */
+.sway-hero__sparkle {
+  position: absolute;
+  bottom: var(--sway-space-12);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  z-index: 1;
+}
+
+/* ================================================================
+   Navigation — Minimal
+   ================================================================ */
+
+.sway-nav {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  z-index: 2;
+}
+
+.sway-nav a {
+  color: var(--sway-off-white);
+  text-decoration: none;
+}
+
+.sway-nav__status {
+  color: var(--sway-muted);
+  font-size: 0.62rem;
+}
+
+/* ================================================================
+   Waitlist — CTA + Form
+   ================================================================ */
+
+.sway-waitlist {
+  margin-top: var(--sway-space-8);
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* CTA button — editorial, not SaaS */
+.sway-waitlist__cta {
+  background: transparent;
+  border: 1px solid var(--sway-border);
+  color: var(--sway-off-white);
+  font-family: var(--font-sway-body), Arial, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  transition:
+    border-color 300ms ease,
+    box-shadow 300ms ease,
+    transform 300ms ease;
+}
+
+.sway-waitlist__cta:hover {
+  border-color: rgba(255, 255, 255, 0.28);
+  box-shadow: 0 0 24px rgba(255, 255, 255, 0.05);
+  transform: translateY(-1px);
+}
+
+.sway-waitlist__cta:focus-visible {
+  outline: 1px solid var(--sway-off-white);
+  outline-offset: 4px;
+}
+
+.sway-waitlist__arrow {
+  display: inline-block;
+  margin-left: 0.5em;
+  transition: transform 300ms ease;
+}
+
+.sway-waitlist__cta:hover .sway-waitlist__arrow {
+  transform: translateX(3px);
+}
+
+/* Form state */
+.sway-waitlist__form {
+  width: 100%;
+  max-width: 420px;
+}
+
+.sway-waitlist__field {
+  display: flex;
+  align-items: center;
+  gap: var(--sway-space-3);
+}
+
+.sway-waitlist__input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--sway-off-white);
+  font-family: var(--font-sway-body), Arial, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.75rem 0;
+  outline: none;
+}
+
+.sway-waitlist__input::placeholder {
+  color: var(--sway-muted);
+}
+
+.sway-waitlist__input:focus {
+  color: var(--sway-white);
+}
+
+.sway-waitlist__submit {
+  background: transparent;
+  border: none;
+  color: var(--sway-off-white);
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  transition:
+    transform 300ms ease,
+    color 300ms ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+}
+
+.sway-waitlist__submit:hover {
+  transform: translateX(3px);
+  color: var(--sway-white);
+}
+
+.sway-waitlist__submit:focus-visible {
+  outline: 1px solid var(--sway-off-white);
+  outline-offset: 4px;
+}
+
+.sway-waitlist__submit:disabled {
+  cursor: default;
+  opacity: 0.4;
+}
+
+/* Underline separator */
+.sway-waitlist__line {
+  height: 1px;
+  background: var(--sway-border);
+  width: 100%;
+  margin-top: 2px;
+  transition: background 300ms ease;
+}
+
+.sway-waitlist__form:focus-within .sway-waitlist__line {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Loading spinner */
+.sway-waitlist__spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 1.5px solid var(--sway-border);
+  border-top-color: var(--sway-off-white);
+  border-radius: 50%;
+  animation: sway-spin 0.7s linear infinite;
+}
+
+@keyframes sway-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sway-waitlist__spinner {
+    animation: none;
+    border-color: var(--sway-off-white);
+  }
+}
+
+/* Feedback area */
+.sway-waitlist__feedback {
+  min-height: 1.5rem;
+  margin-top: var(--sway-space-3);
+}
+
+.sway-waitlist__error {
+  color: #e87373;
+  font-size: 0.72rem;
+  font-family: var(--font-sway-body), Arial, sans-serif;
+  letter-spacing: 0.04em;
+  margin: 0;
+}
+
+.sway-waitlist__retry {
+  background: none;
+  border: none;
+  color: var(--sway-off-white);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  font-size: inherit;
+  font-family: inherit;
+  padding: 0;
+}
+
+.sway-waitlist__retry:focus-visible {
+  outline: 1px solid var(--sway-off-white);
+  outline-offset: 2px;
+}
+
+/* Success state */
+.sway-waitlist__success {
+  text-align: center;
+}
+
+.sway-waitlist__confirmation {
+  font-family: var(--font-sway-display), Arial, sans-serif;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  color: var(--sway-off-white);
+  margin: 0;
+}
+
+/* ================================================================
+   Capabilities Section — Editorial Typography
+   ================================================================ */
+
+.sway-capabilities {
+  background: var(--sway-black);
+  padding: var(--sway-space-32) clamp(1.25rem, 7vw, 9rem);
+  position: relative;
+}
+
+.sway-capabilities__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sway-space-6);
+}
+
+.sway-capabilities__item {
+  font-size: clamp(2.2rem, 6vw, 5.5rem);
+  color: var(--sway-off-white);
+  text-align: center;
+  opacity: 0.85;
+  transition: opacity 400ms ease;
+}
+
+.sway-capabilities__item:hover {
+  opacity: 1;
+}
+
+/* ================================================================
+   Footer
+   ================================================================ */
+
+.sway-footer {
+  background: var(--sway-black);
+  padding: var(--sway-space-12) clamp(1.25rem, 7vw, 9rem) var(--sway-space-16);
+  text-align: center;
+}
+
+.sway-footer__rule {
+  height: 1px;
+  background: var(--sway-border-subtle);
+  max-width: 200px;
+  margin: 0 auto var(--sway-space-12);
+}
+
+.sway-footer__copy {
+  color: var(--sway-muted);
+  font-size: 0.62rem;
+  margin: 0;
+}
+
+/* ================================================================
+   Responsive — Tablet
+   ================================================================ */
+
+@media (max-width: 768px) {
+  .sway-wordmark--hero {
+    font-size: clamp(2.6rem, 12vw, 5rem);
   }
 
-  body {
-    background-color: var(--color-background);
-    color: var(--color-foreground);
+  .sway-hero__headline {
+    font-size: clamp(1.5rem, 5vw, 2.4rem);
+  }
+
+  .sway-capabilities__item {
+    font-size: clamp(1.8rem, 8vw, 3.5rem);
+  }
+
+  .sway-orbit {
+    height: 120vw;
+    width: 120vw;
+  }
+}
+
+/* ================================================================
+   Responsive — Mobile
+   ================================================================ */
+
+@media (max-width: 480px) {
+  .sway-hero {
+    padding: 1.25rem 1.25rem;
+  }
+
+  .sway-wordmark--hero {
+    font-size: clamp(2.4rem, 14vw, 3.6rem);
+  }
+
+  .sway-hero__headline {
+    font-size: clamp(1.35rem, 6vw, 1.8rem);
+  }
+
+  .sway-hero__subtext {
+    font-size: 0.82rem;
+  }
+
+  .sway-logo--nav .sway-logo__img {
+    max-height: 28px;
+  }
+
+  .sway-nav__status {
+    font-size: 0.55rem;
+  }
+
+  .sway-orbit {
+    height: 135vw;
+    width: 135vw;
+  }
+
+  .sway-waitlist__form {
+    max-width: 100%;
+  }
+
+  .sway-capabilities {
+    padding: var(--sway-space-24) 1.25rem;
+  }
+
+  .sway-capabilities__item {
+    font-size: clamp(1.6rem, 10vw, 2.8rem);
   }
 }
