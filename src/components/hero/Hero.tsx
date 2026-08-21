@@ -41,8 +41,8 @@ export function Hero() {
 
         {/* Supporting copy */}
         <motion.p className="sway-hero__subtext" {...reveal(1.15)}>
-          Sway Media is a new-age media agency at the intersection of culture,
-          creativity, technology and AI.
+          Sway Media is a new-age media agency at the intersection of culture, creativity,
+          technology and AI.
         </motion.p>
 
         {/* Waitlist CTA + inline form */}
@@ -62,4 +62,3 @@ export function Hero() {
     </section>
   );
 }
-

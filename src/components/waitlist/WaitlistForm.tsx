@@ -41,9 +41,7 @@ export function WaitlistForm() {
       await submitWaitlistEmail(email.trim());
       setState("success");
     } catch (err) {
-      setErrorMsg(
-        err instanceof Error ? err.message : "Something went wrong.",
-      );
+      setErrorMsg(err instanceof Error ? err.message : "Something went wrong.");
       setState("error");
     }
   }
@@ -68,11 +66,7 @@ export function WaitlistForm() {
             exit={{ opacity: 0, y: reduced ? 0 : -8 }}
             transition={transition}
           >
-            <button
-              type="button"
-              className="sway-waitlist__cta"
-              onClick={activate}
-            >
+            <button type="button" className="sway-waitlist__cta" onClick={activate}>
               Join the Waitlist{" "}
               <span aria-hidden="true" className="sway-waitlist__arrow">
                 →
@@ -135,11 +129,7 @@ export function WaitlistForm() {
               {state === "error" && errorMsg && (
                 <p id="waitlist-error" className="sway-waitlist__error">
                   {errorMsg}{" "}
-                  <button
-                    type="button"
-                    className="sway-waitlist__retry"
-                    onClick={handleRetry}
-                  >
+                  <button type="button" className="sway-waitlist__retry" onClick={handleRetry}>
                     Try again
                   </button>
                 </p>

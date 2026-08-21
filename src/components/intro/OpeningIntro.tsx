@@ -36,11 +36,7 @@ export function OpeningIntro() {
   }
 
   return (
-    <div
-      aria-hidden="true"
-      className="sway-opening-intro"
-      data-testid="opening-intro"
-    >
+    <div aria-hidden="true" className="sway-opening-intro" data-testid="opening-intro">
       <video
         autoPlay
         className="sway-opening-intro__video"

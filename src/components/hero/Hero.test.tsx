@@ -12,13 +12,8 @@ test("renders the SWAY hero with wordmark, headline, and waitlist CTA", () => {
   expect(screen.getByText(/building what.s next/i)).toBeInTheDocument();
 
   // Supporting copy
-  expect(
-    screen.getByText(/new-age media agency/i),
-  ).toBeInTheDocument();
+  expect(screen.getByText(/new-age media agency/i)).toBeInTheDocument();
 
   // Waitlist CTA
-  expect(
-    screen.getByRole("button", { name: /join the waitlist/i }),
-  ).toBeInTheDocument();
+  expect(screen.getByRole("button", { name: /join the waitlist/i })).toBeInTheDocument();
 });
-

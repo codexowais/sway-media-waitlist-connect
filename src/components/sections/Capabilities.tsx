@@ -23,11 +23,7 @@ export function Capabilities() {
             key={item}
             className="sway-capabilities__item sway-display"
             initial={{ opacity: 0, y: reduced ? 0 : 24 }}
-            animate={
-              inView
-                ? { opacity: 1, y: 0 }
-                : { opacity: 0, y: reduced ? 0 : 24 }
-            }
+            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: reduced ? 0 : 24 }}
             transition={{
               duration: reduced ? 0 : 0.7,
               delay: reduced ? 0 : 0.15 * i,

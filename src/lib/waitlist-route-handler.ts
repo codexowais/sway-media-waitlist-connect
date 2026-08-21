@@ -30,9 +30,7 @@ export async function POST(request: Request): Promise<Response> {
   }
 
   try {
-    const { insertWaitlistEmail, sendWaitlistEmails } = await import(
-      "@/lib/waitlist-store.server"
-    );
+    const { insertWaitlistEmail, sendWaitlistEmails } = await import("@/lib/waitlist-store.server");
 
     const { duplicate } = await insertWaitlistEmail(email);
     if (duplicate) {

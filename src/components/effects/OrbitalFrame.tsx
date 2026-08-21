@@ -1,1 +1,3 @@
-export function OrbitalFrame() { return <div aria-hidden="true" className="sway-orbit" />; }
+export function OrbitalFrame() {
+  return <div aria-hidden="true" className="sway-orbit" />;
+}

@@ -2,9 +2,7 @@ import { validateEmail } from "./validation";
 
 const GENERIC_SUBMISSION_ERROR = "Unable to join the waitlist. Please try again.";
 
-export async function submitWaitlistEmail(
-  email: string,
-): Promise<{ status: "acknowledged" }> {
+export async function submitWaitlistEmail(email: string): Promise<{ status: "acknowledged" }> {
   const normalizedEmail = email.trim().toLowerCase();
   const validationError = validateEmail(normalizedEmail);
   if (validationError) throw new Error(validationError);

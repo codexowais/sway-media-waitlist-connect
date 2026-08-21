@@ -11,10 +11,7 @@ test("plays the supplied opening video over a full-screen intro", () => {
   render(<OpeningIntro />);
 
   const video = screen.getByLabelText("SWAY MEDIA opening animation");
-  expect(video).toHaveAttribute(
-    "src",
-    "/video/Website_opening_animation_design_202608201259.mp4",
-  );
+  expect(video).toHaveAttribute("src", "/video/Website_opening_animation_design_202608201259.mp4");
   expect(video).toHaveAttribute("autoplay");
   expect(video).toHaveAttribute("playsinline");
   expect(video).not.toHaveAttribute("loop");

@@ -14,9 +14,7 @@ beforeEach(() => {
 
 test("shows the CTA button in idle state", () => {
   render(<WaitlistForm />);
-  expect(
-    screen.getByRole("button", { name: /join the waitlist/i }),
-  ).toBeInTheDocument();
+  expect(screen.getByRole("button", { name: /join the waitlist/i })).toBeInTheDocument();
 });
 
 test("transitions to the email form when CTA is clicked", async () => {
@@ -26,12 +24,8 @@ test("transitions to the email form when CTA is clicked", async () => {
   await user.click(screen.getByRole("button", { name: /join the waitlist/i }));
 
   // Wait for AnimatePresence transition
-  expect(
-    await screen.findByPlaceholderText("YOUR EMAIL"),
-  ).toBeInTheDocument();
-  expect(
-    screen.getByRole("button", { name: /submit email/i }),
-  ).toBeInTheDocument();
+  expect(await screen.findByPlaceholderText("YOUR EMAIL")).toBeInTheDocument();
+  expect(screen.getByRole("button", { name: /submit email/i })).toBeInTheDocument();
 });
 
 test("shows validation error for empty submission", async () => {
@@ -57,9 +51,7 @@ test("shows validation error for invalid email", async () => {
   await user.type(emailInput, "bad-email");
   await user.click(screen.getByRole("button", { name: /submit email/i }));
 
-  expect(
-    await screen.findByText("Enter a valid email address."),
-  ).toBeInTheDocument();
+  expect(await screen.findByText("Enter a valid email address.")).toBeInTheDocument();
 });
 
 test("shows success state for valid email submission", async () => {

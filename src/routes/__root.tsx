@@ -13,7 +13,6 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { OpeningIntro } from "../components/intro/OpeningIntro";
 
-
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -84,14 +83,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "SWAY MEDIA" },
       {
         name: "description",
-        content:
-          "SWAY MEDIA is a new-age creative and media company. Something is forming.",
+        content: "SWAY MEDIA is a new-age creative and media company. Something is forming.",
       },
       { property: "og:title", content: "SWAY MEDIA" },
       {
         property: "og:description",
-        content:
-          "SWAY MEDIA is a new-age creative and media company. Something is forming.",
+        content: "SWAY MEDIA is a new-age creative and media company. Something is forming.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -147,5 +144,4 @@ function RootComponent() {
       <OpeningIntro />
     </QueryClientProvider>
   );
-
 }
