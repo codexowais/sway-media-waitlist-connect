@@ -1,11 +1,9 @@
 import { render, screen } from "@testing-library/react";
 import { expect, test } from "vitest";
-import Home from "./page";
+import SwayHome from "@/components/pages/SwayHome";
 
 test("renders the SWAY main landmark", () => {
-  render(<Home />);
+  render(<SwayHome />);
 
-  expect(
-    screen.getByRole("main", { name: /sway media waitlist/i }),
-  ).toBeInTheDocument();
+  expect(screen.getByRole("main", { name: /sway media waitlist/i })).toBeInTheDocument();
 });
