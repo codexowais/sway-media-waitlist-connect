@@ -6,6 +6,8 @@
    ================================================================ */
 
 :root {
+  --font-sway-display: "Sora";
+  --font-sway-body: "Inter";
   --sway-black: #000000;
   --sway-black-soft: #050505;
   --sway-carbon: #0a0a0a;
