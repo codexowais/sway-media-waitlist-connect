@@ -1,24 +1,22 @@
 import { createFileRoute } from "@tanstack/react-router";
+import SwayHome from "@/components/pages/SwayHome";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => ({
+    meta: [
+      { title: "SWAY MEDIA — Join the Waitlist" },
+      {
+        name: "description",
+        content:
+          "SWAY MEDIA is a new-age media agency at the intersection of culture, creativity, technology and AI. Join the waitlist.",
+      },
+      { property: "og:title", content: "SWAY MEDIA — Join the Waitlist" },
+      {
+        property: "og:description",
+        content:
+          "A new-age media agency at the intersection of culture, creativity, technology and AI. Something is forming.",
+      },
+    ],
+  }),
+  component: SwayHome,
 });
-
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}
