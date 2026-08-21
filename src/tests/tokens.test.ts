@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import "./globals.css";
+import "@/styles.css";
 
 test("exposes the documented SWAY monochrome token system", () => {
   const styles = getComputedStyle(document.documentElement);

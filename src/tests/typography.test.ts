@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import "./globals.css";
+import "@/styles.css";
 
 test("applies SWAY display typography with precise tracking", () => {
   const heading = document.createElement("h1");
